@@ -20,5 +20,5 @@ fn main() {
 }
 
 fn welcome() {
-    println!("Welcome to another function");
+    println!("Welcome to another function, that would be called in the main function, why is rust so stressful...");
 }

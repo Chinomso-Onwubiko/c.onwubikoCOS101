@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "t_directory"
+name = "learning_cargo"
 version = "0.1.0"
