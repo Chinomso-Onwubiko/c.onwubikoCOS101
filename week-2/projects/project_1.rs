@@ -21,7 +21,7 @@ fn main() {
 	
 	println!("How much did you deposit?");
 	let mut p = String::new(); //This creates a mutable but technically empty string object.
-	io::stdin() //This takes prompts the user for input.
+	io::stdin() //This prompts the user for input.
 	    .read_line(&mut p) //This takes note of what the user gives as input, and assigns its value to the already created variable 'p'.
 	    .expect("Please input a decimal number for the principal, if you want to input an integer, do so with a (.0) at the end."); 
 	    //The line above displays an error message incase the program fails due to the user inputing the wrong data type.
