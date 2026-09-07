@@ -16,7 +16,7 @@ in general.*/
 
 use std::io; //This imports the input/output method from Rust's standard Library.
 
-fn main() {
+/*fn main() {
 	println!("Hi there, welcome to the Simple Interest calculator.");
 	
 	println!("How much did you deposit?");
@@ -47,4 +47,6 @@ fn main() {
 	let s_interest: f64 = (p * r * t)/100.0; /*This calculates and stores the value of the simple interest based on the values given
 	for the respective parameters.*/
 	println!("The simple interest on N{}, at a rate of {}% for {} years is: {}", p, r, t, s_interest);
-}
+}*/
+
+

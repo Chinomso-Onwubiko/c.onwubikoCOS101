@@ -1,4 +1,4 @@
-/*use std::io;
+use std::io;
 use std::cmp::Ordering;
 use rand::Rng;
 
@@ -18,7 +18,7 @@ fn main() {
         Ordering::Less => println!("Your number is too small..."),
         Ordering::Equal => println!("Wonderful, you guessed the right number, it was: {user_guess}"),
     }
-}*/
+}
 
 /*use std::io;
 use rand::Rng;
@@ -48,7 +48,7 @@ fn main() {
 }*/
 
 
-
+/*
 use std::io;
 use std::cmp::Ordering;
 use rand::Rng;
@@ -87,10 +87,12 @@ checks it the other way around and that messes up the output.*/
 
     }
 
-}
+}*/
 
 
 
+//THIS VERSION OF THE CODE ADDS A "continue" STATEMENT TO A CERTAIN BLOCK, THIS ENSURES THE PROGRAM RESTARTS AS AGAINST CRASHING
+//IF THE USER GIVES THE WRONG INPUT.
 /*use std::io;
 use std::cmp::Ordering;
 use rand::Rng;
@@ -122,3 +124,43 @@ fn main() {
 
     }
 }*/
+
+
+
+//I WROTE THE CODE AGAIN TO ENSURE I HAD A GOOD GRASP OF THE CONCEPTS, THIS IS THE FINAL VERSION.
+use std::io;
+use rand::Rng;
+use std::cmp::Ordering;
+
+fn main() {
+    println!("Welcome to the guessing game, you are to guess the randomly generated number.");
+    let s_number = rand::thread_rng().gen_range(1..=150);
+
+    loop{
+        let mut u_guess = String::new();
+        //let s_number = rand::thread_rng().gen_range(1..=100);//We can have this here, and keep changing the random number after 
+        //each failed attemp, but that might make the game a bit too difficult, so we would put it outside the loop.
+        //println!("The number to be guessed is: {s_number}.");//This is for production tests.
+
+        io::stdin()
+            .read_line(&mut u_guess)
+            .expect("Your input could not be stored.");
+
+        let u_guess: u16 = match u_guess.trim().parse(){
+            Ok(num) => num,
+            Err(_) =>{
+                println!("Please input an integer.");
+                continue
+                }    
+        };
+        //I commented out the secret number in the block below since it would no longer be regenerated after each failed attempt.     
+        match u_guess.cmp(&s_number){ 
+            Ordering::Greater => println!("The number you guessed was too large"),//, the correct number was: {s_number}."),
+            Ordering::Less => println!("The number you guessed was too small"),//, the correct number was: {s_number}"),
+            Ordering::Equal => {
+                println!("Congratulations, you guessed the number correctly: {s_number}");
+                break;
+            }
+        }
+    }
+}
