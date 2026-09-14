@@ -4,5 +4,7 @@
 
 fn main(){
     println!("Hi, everyone. My name is Chinomso Onwubiko, and I am currently learning how to code in rust");
+    let x = 5/2;
+    println!("{x}");
 } //NOTE: You cannot have 2 "main" funtions within the same scope(at least the way I understand
 //it for now.)

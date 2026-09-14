@@ -26,7 +26,7 @@ fn main() {
 
     let x = 35; /*This is called shadowing, this is basically you reassigning a new value to a variable that already exists.
     The difference between shadowing and reassignments is the use of the 'let' keyword, if you use the 'let' keyword, the 
-    new assignment only takes effect within the current scope, but if you don't use the 'let' keyword, the value of the 
+    new assignment only takes effect within the current scope, but if you don't use the 'let' keywor the value of the 
     reassignment even in an inner scope will have an effect on the value of x in the outer scope, which would lead to the
     permanent change in value of the variable.
 

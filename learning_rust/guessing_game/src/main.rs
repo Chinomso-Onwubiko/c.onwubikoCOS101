@@ -1,24 +1,3 @@
-use std::io;
-use std::cmp::Ordering;
-use rand::Rng;
-
-//I wrote the code off hand again to ensure I had a proper understanding of how the libraries imported work, alongside the
-//the structure of the rust syntax.
-fn main() {
-    println!("Welcome to the wonderful guessing game! Guess the random number:");
-    let mut user_guess = String::new();
-    io::stdin()
-        .read_line(&mut user_guess)
-        .expect("Your input could not be stored");
-    let secret_number = rand::thread_rng().gen_range(1..=100);
-    let user_guess: u32 = user_guess.trim().parse().expect("Please input an integer");
-
-    match user_guess.cmp(&secret_number){
-        Ordering::Greater => println!("Your number is too big..."),
-        Ordering::Less => println!("Your number is too small..."),
-        Ordering::Equal => println!("Wonderful, you guessed the right number, it was: {user_guess}"),
-    }
-}
 
 /*use std::io;
 use rand::Rng;
@@ -34,7 +13,7 @@ fn main() {
         .expect("Your input could not be stored.");
 
     let user_guess: u32 = user_guess.trim().parse().expect("Please input a number.");
-    The line of code above can also be written like this:
+    The line of code above can also be  written like this:
     let user_guess: u32 = user_guess
         .trim()
         .parse()
@@ -97,35 +76,6 @@ checks it the other way around and that messes up the output.*/
 use std::cmp::Ordering;
 use rand::Rng;
 
-fn main() {
-    println!("Welcome to the guessing game, you would be required to guess the randomly generated number.");
-    loop{
-        println!("Guess the number...");
-        let mut u_guess = String::new();
-        let s_number = rand::thread_rng().gen_range(1..=1000);
-
-        io::stdin()
-            .read_line(&mut u_guess)
-            .expect("Your input could not be processed");
-
-        let u_guess: i32 = match u_guess.trim().parse(){
-            Ok(num) => num,
-            Err(_) => continue,
-        };
-
-        match u_guess.cmp(&s_number){
-            Ordering::Greater => println!("Your number is too big, the correct number was {s_number}, try again."),
-            Ordering::Less => println!("Your number is smaller, the correct number was {s_number}, try again"),
-            Ordering::Equal =>{
-                println!("Congratulations! You guessed the correct number: {s_number}.");
-                break;
-            }
-        }    
-
-    }
-}*/
-
-
 
 //I WROTE THE CODE AGAIN TO ENSURE I HAD A GOOD GRASP OF THE CONCEPTS, THIS IS THE FINAL VERSION.
 use std::io;
@@ -146,13 +96,13 @@ fn main() {
             .read_line(&mut u_guess)
             .expect("Your input could not be stored.");
 
-        let u_guess: u16 = match u_guess.trim().parse(){
+        let u_guess: u16 = match u_guess.trim().parse() {//.expect("Please input an integer");//{
             Ok(num) => num,
             Err(_) =>{
-                println!("Please input an integer.");
+                println!("Please input an integer less than 65,537");
                 continue
                 }    
-        };
+            };
         //I commented out the secret number in the block below since it would no longer be regenerated after each failed attempt.     
         match u_guess.cmp(&s_number){ 
             Ordering::Greater => println!("The number you guessed was too large"),//, the correct number was: {s_number}."),
@@ -161,6 +111,43 @@ fn main() {
                 println!("Congratulations, you guessed the number correctly: {s_number}");
                 break;
             }
+         }
+    }
+}*/
+
+
+use std::io;
+use std::cmp::Ordering;
+use rand::Rng;
+
+fn main() {
+    println!("Welcome to the guessing game, you are to guess the randomly generated number");
+    let s_number: u16 = rand::thread_rng().gen_range(1..=150);
+
+    loop{
+        println!("Guess the random number.");
+        let mut guess = String::new();
+
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Your input could not be stored.");
+
+        let guess: u16 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Please input an integet.");
+                continue
+                }
+        };
+
+        match guess.cmp(&s_number) {
+            Ordering::Greater => println!("Your guess was too large, try a smaller number."),
+            Ordering::Less => println!("Your guess was too small, try a larger number."),
+            Ordering::Equal => {
+                println!("Congratulations, you guessed the random number: {s_number}.");
+                break
+                }
+
+            }
         }
     }
-}
