@@ -15,7 +15,7 @@ fn main() {
     let age: u8 = age.trim().parse().expect("Please enter a positive whole number as your age, don't try to enter it in decimal or words.");
 
     //This code block askes the user whether or not he/she is experienced, this will enable the program know which employee has experience.
-    println!("Are you experienced? Enter yes or no (in small letters)");
+    println!("Are you experienced? Enter yes or no?");
     io::stdin()
         .read_line(&mut exp)
         .expect("The value you inputed for your experience could not be stored, please input a valid string.");
@@ -33,10 +33,13 @@ fn main() {
     else if exp == "yes" && age <= 28 {
         println!("Your annual incentive based on your experience and age is N1,300,000.");
     }
+    else if exp == "no" {
+        println!("Your annual incentive based on your experience level is N100,000.");
+    }
     else if exp != "yes" && exp != "no" {
         println!("Please ensure you inputed 'yes' or 'no'.");
     }
-    else{
+    else{ //This will handle any other potential error.
         println!("You are not experienced enough to receive an annual incentive under company policy, keep working hard, one day you will get there.");
     }
 
