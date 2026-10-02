@@ -24,11 +24,11 @@ fn main() {
 	io::stdin()
 	    .read_line(&mut quantity)
 	    .expect("The value you inputed for quantity could not be stored, please enter a valid string.");
-	let quantity: u64 = quantity.trim().parse().expect("Please enter a positive whole number as the quantity of items.");
+	let quantity: u64 = quantity.trim().parse().expect("Please enter a positive whole /number as the quantity of items.");
 
 	if user_choice == "M"{
 		let total: u64 = monitor.2 * quantity;
-		println!("The total costs of {quantity} monitor(s) is N{total}.");
+		println!("The total costs of {} monitor(s) is N{}.", quantity, total);
 	}
 	else if user_choice == "L"{
 		let total: u64 = laptop.2 * quantity;
