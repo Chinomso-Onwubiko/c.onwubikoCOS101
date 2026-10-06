@@ -17,6 +17,8 @@ fn main() {
 
     //call add function with arguments.
     add(a, b);
+    //let c = add(a, b);
+    //println!("{:?}",c);//This would print '()' i.e a null/none value representation in rust.
 }
 
 fn add(a: i32, b: i32) {
