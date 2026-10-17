@@ -1,4 +1,4 @@
-use std::io;
+use std::io::{self, Write};
 
 fn main() {
     let mut applicants: Vec<(u8, String)> = Vec::new();
@@ -27,30 +27,29 @@ fn main() {
 
         applicants.push((exp, name));
         track += 1;
-       
     
-        if track == counts {
+        if track == counts { //This tells the loop when to stop(once the number of applicants taken is up to counts).
             break
         }
     } 
     let mut choice: Vec<(u8, &String)> = Vec::new();
     let mut max: u8 = 0;
     for (exp, name) in applicants.iter(){
-        if max == 0{
-            max == *exp;
-            choice.push((*exp, name));
-        }
-        else{
-            if *exp > max {
-            let max = exp;
-            let dlt = choice.pop();
-            choice.push((*exp, name));
-            }
+        //println!("Max number: {}, Current Experience: {}", max, exp); //This was used to test the code, and confimr what was happening in
+        //the background.
+        if *exp > max {
+            let dlt = choice.pop(); //removes the previously added applicants tuple and stores its wrapped value to dlt.
+            //println!("{:?}", dlt);
+            max = *exp; //assigns the highest value gotten to max.
+            //println!("{}",max); //This was also used when checking the code for errors.
+            choice.push((max, name)); //appends a tuple containing the applicants name and years of experience.
         }
     }
+    
+    println!("{:?}", choice);
     for (exp, name) in choice{
-        println!("The applicant with the highest years of experience and as such the best fit for the job is {name}, with experience of {exp} years.");
+        println!("The applicant with the highest years of experience, and as such the best fit for the job, is {name}, with an experience of {exp} years.");
     }
-        
+            
 
 }
