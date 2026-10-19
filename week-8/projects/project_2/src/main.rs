@@ -1,4 +1,4 @@
-use std::io::{self, Write};
+use std::io;
 
 fn main() {
     let mut applicants: Vec<(u8, String)> = Vec::new();
