@@ -24,14 +24,13 @@ fn main() {
     db.write_all("Student Name,".as_bytes()).expect("Could not add the first column");
     db.write_all("Matric. Number,".as_bytes()).unwrap();
     db.write_all("Department,".as_bytes()).unwrap();
-    db.write_all("Level".as_bytes()).unwrap();
+    db.write_all("Level\n".as_bytes()).unwrap();
 
     while count <= numb {
         let mut name = String::new();
         let mut matric = String::new();
         let mut dept = String::new();
         let mut lvl = String::new();
-        db.write_all("\n".as_bytes()).unwrap();//This moves to the next row in the spreadsheet.
 
         println!("Please type in your name.");
         io::stdin()
@@ -45,7 +44,6 @@ fn main() {
             .expect("Could not store your input for matric");
         matric = matric.trim().to_uppercase();
         if matrics.contains(&matric){
-            names.pop();
             println!("Please crosscheck your matriculation number, as it matches that of another student in the database.");
             continue
         }
@@ -71,6 +69,8 @@ fn main() {
         let lvl:u16 = lvl.trim().parse().expect("Ensure you inputed a positive whole number as your study level.");
         db.write_all(format!("{lvl},").as_bytes()).unwrap();
         lvls.push(lvl);
+
+        db.write_all("\n".as_bytes()).unwrap();//This moves to the next row in the spreadsheet.
 
         count += 1;
     }
